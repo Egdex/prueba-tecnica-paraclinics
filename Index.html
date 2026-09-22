@@ -1,15 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link reL="stylesheet"  href="css/styles.css">
     <title>Catalogo de productos</title>
 
 </head>
-<body>
 
+
+<body>
+   
     <h1> Catalogo de productos </h1>
 
+
+
+    <main>
+
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Buscar"  />
+        </div>
+
+        <table>
+        <caption>Tabla</caption>
+
+        <thead>
+            <tr>
+                <th> Imagen    </th>
+                <th> Titulo    </th>
+                <th> Categoria </th>
+                <th> Precio    </th>
+                <th> Stock     </th>
+            </tr>
+        </thead>
+            <!-- vacio temporalmente luego javascript creara todo -->
+        <tbody>
+
+        </tbody>
+    </table>
+
+    </main>
+
+    
+    <script src="js/app.js"></script>
 </body>
 </html>
