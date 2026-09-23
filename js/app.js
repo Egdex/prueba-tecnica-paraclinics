@@ -3,6 +3,11 @@ console.log("JS funcionando");
 const productTable = document.querySelector("tbody")
 
 const searchInput = document.querySelector("#search-input")
+
+const statusMessage = document.querySelector("#status-message")
+
+statusMessage.textContent = "Cargando los productos...";
+
 // Obtener todos los items desde el fetch
 fetch("https://dummyjson.com/products?limit=100")
     .then(response =>{
@@ -10,6 +15,7 @@ fetch("https://dummyjson.com/products?limit=100")
     })
     .then(data => {
         data.products.forEach(product => {
+            
 
 
             console.log(product);
@@ -44,4 +50,10 @@ fetch("https://dummyjson.com/products?limit=100")
             row.appendChild(stockCell)
             productTable.appendChild(row);
         });
+
+        statusMessage.textContent = "";
+    })
+    .catch(error =>{
+        statusMessage.textContent = "No se pudo cargar los datos...";
+        console.log(error);
     })
