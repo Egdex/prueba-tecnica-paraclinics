@@ -6,19 +6,16 @@ const searchInput = document.querySelector("#search-input")
 
 const statusMessage = document.querySelector("#status-message")
 
+let products = [];
+
 statusMessage.textContent = "Cargando los productos...";
 
-// Obtener todos los items desde el fetch
-fetch("https://dummyjson.com/products?limit=100")
-    .then(response =>{
-        return response.json();
-    })
-    .then(data => {
-        data.products.forEach(product => {
-            
+// Funciones
 
+//Rederizar productos en la tabla
+function renderProducts(products) {
+    products.forEach(product => {
 
-            console.log(product);
             //Crear filas y columnas
             const row = document.createElement("tr");
 
@@ -48,8 +45,31 @@ fetch("https://dummyjson.com/products?limit=100")
             row.appendChild(categoryCell);
             row.appendChild(priceCell);
             row.appendChild(stockCell)
-            productTable.appendChild(row);
-        });
+            productTable.appendChild(row); 
+    });
+}
+
+searchInput.addEventListener("input", (event) => {
+   
+    const searchTerm = event.target.value.toLowerCase();
+
+    const filteredProducts = products.filter(product =>
+         product.title.toLowerCase().includes(searchTerm));
+
+    productTable.innerHTML = "";
+    renderProducts(filteredProducts);
+});
+
+
+// Obtener todos los items desde el fetch
+fetch("https://dummyjson.com/products?limit=100")
+    .then(response =>{
+        return response.json();
+    })
+    .then(data => {
+        products = data.products;
+
+        renderProducts(products);
 
         statusMessage.textContent = "";
     })
@@ -57,3 +77,4 @@ fetch("https://dummyjson.com/products?limit=100")
         statusMessage.textContent = "No se pudo cargar los datos...";
         console.log(error);
     })
+
