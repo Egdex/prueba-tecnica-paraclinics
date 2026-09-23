@@ -23,7 +23,10 @@ fetch("https://dummyjson.com/products?limit=100")
             categoryCell.textContent = product.category;
 
             const priceCell = document.createElement("td");
-            priceCell.textContent = product.price;
+            priceCell.textContent = new Intl.NumberFormat("es-CL",{
+                style: "currency",
+                currency: "CLP"
+            }).format(product.price);
 
             const stockCell = document.createElement("td");
             stockCell.textContent = product.stock;

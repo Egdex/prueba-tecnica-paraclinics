@@ -44,3 +44,8 @@ tbody tr:hover {
     background-color: #cecece;
 }
 
+td img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
